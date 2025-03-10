@@ -1,0 +1,42 @@
+### GET all tasks (initially empty)
+GET http://localhost:5134/api/tasks
+Content-Type: application/json
+
+### POST a new task
+POST http://localhost:5134/api/tasks
+Content-Type: application/json
+
+{
+    "title": "Work with day 2",
+    "isCompleted": false
+}
+
+### GET all tasks (should show the posted task)
+GET http://localhost:5134/api/tasks
+Content-Type: application/json
+
+### GET task by ID (ID 1)
+GET http://localhost:5134/api/tasks/2
+Content-Type: application/json
+
+### PUT update task (ID 1)
+PUT http://localhost:5134/api/tasks/2
+Content-Type: application/json
+
+{
+    "id": 2,
+    "title": "Updated Task",
+    "isCompleted": true
+}
+
+### GET task by ID (verify update)
+GET http://localhost:5134/api/tasks/1
+Content-Type: application/json
+
+### DELETE task (ID 1)
+DELETE http://localhost:5134/api/tasks/1
+Content-Type: application/json
+
+### GET all tasks (should be empty again)
+GET http://localhost:5134/api/tasks
+Content-Type: application/json
