@@ -36,3 +36,25 @@ builder.Services.AddDbContext<TaskContext>(options =>
 
 ### run: dotnet ef migrations add InitialCreate
 - run: dotnet ef database update
+
+## Day 3 - 10th March 2025: .NET Core Advanced Features
+### Step 1: Add Validation with Data Annotations
+- Update Models/Task.cs
+using System.ComponentModel.DataAnnotations;
+
+namespace TaskManagerApi.Models;
+
+public class Task
+{
+    public int Id { get; set; }
+
+    [Required(ErrorMessage = "Title is required")]
+    [StringLength(100, MinimumLength = 1, ErrorMessage = "Title must be between 1 and 100 characters")]
+    public string Title { get; set; } = string.Empty;
+
+    public bool IsCompleted { get; set; }
+}
+
+- Update migrations (since the model changed) run: dotnet ef migrations add AddTaskValidation
+dotnet ef database update
+- now test by check api from api-testing.http. Pass empty string at title.
