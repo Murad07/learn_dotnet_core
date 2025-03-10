@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TaskManagerApi.Data;
+using TaskManagerApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseExceptionMiddleware(); // Add this
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

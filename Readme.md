@@ -58,3 +58,26 @@ public class Task
 - Update migrations (since the model changed) run: dotnet ef migrations add AddTaskValidation
 dotnet ef database update
 - now test by check api from api-testing.http. Pass empty string at title.
+
+### Step 2: Add Global Error Handling
+- Action
+-- Create Middleware/ExceptionMiddleware.cs
+-- Register it in Program.cs by adding blew line:
+using TaskManagerApi.Middleware;
+app.UseExceptionMiddleware();
+
+- Test
+-- Temporarily break GetTasks to throw an exception
+[HttpGet]
+public IActionResult GetTasks()
+{
+    throw new Exception("Test error");
+    var tasks = _context.Tasks.ToList();
+    return Ok(tasks);
+}
+-- Check api-testing.http
+GET http://localhost:5134/api/tasks
+Content-Type: application/json
+
+
+

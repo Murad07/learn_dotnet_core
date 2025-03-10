@@ -17,6 +17,7 @@ public class TasksController : ControllerBase
     [HttpGet]
     public IActionResult GetTasks()
     {
+        // throw new Exception("Test error");
         var tasks = _context.Tasks.ToList();
         return Ok(tasks);
     }
