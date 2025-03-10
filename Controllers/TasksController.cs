@@ -7,10 +7,12 @@ using TaskManagerApi.Models;
 public class TasksController : ControllerBase
 {
     private readonly TaskContext _context;
+    private readonly ILogger<TasksController> _logger;
 
-    public TasksController(TaskContext context)
+    public TasksController(TaskContext context, ILogger<TasksController> logger)
     {
         _context = context;
+        _logger = logger;
     }
 
     // GET: api/tasks
@@ -18,6 +20,7 @@ public class TasksController : ControllerBase
     public IActionResult GetTasks()
     {
         // throw new Exception("Test error");
+        _logger.LogInformation("Fetching all tasks");   // Optional Logging activity
         var tasks = _context.Tasks.ToList();
         return Ok(tasks);
     }

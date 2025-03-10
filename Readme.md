@@ -60,14 +60,14 @@ dotnet ef database update
 - now test by check api from api-testing.http. Pass empty string at title.
 
 ### Step 2: Add Global Error Handling
-- Action
--- Create Middleware/ExceptionMiddleware.cs
--- Register it in Program.cs by adding blew line:
+#### Action
+- Create Middleware/ExceptionMiddleware.cs
+- Register it in Program.cs by adding blew line:
 using TaskManagerApi.Middleware;
 app.UseExceptionMiddleware();
 
-- Test
--- Temporarily break GetTasks to throw an exception
+#### Test
+- Temporarily break GetTasks to throw an exception
 [HttpGet]
 public IActionResult GetTasks()
 {
@@ -79,5 +79,40 @@ public IActionResult GetTasks()
 GET http://localhost:5134/api/tasks
 Content-Type: application/json
 
+### Step 3: Add Logging (Log actions for debugging and monitoring)
+#### Action
+- Update TasksController to use logging:
 
+public class TasksController : ControllerBase
+{
+    private readonly TaskContext _context;
+    private readonly ILogger<TasksController> _logger;
+
+    public TasksController(TaskContext context, ILogger<TasksController> logger)
+    {
+        _context = context;
+        _logger = logger;
+    }
+
+    [HttpGet]
+    public IActionResult GetTasks()
+    {
+        _logger.LogInformation("Fetching all tasks");
+        var tasks = _context.Tasks.ToList();
+        return Ok(tasks);
+    }
+
+    // Add logging to other methods similarly
+}
+
+- Enable logging in Program.cs:
+
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();
+    logging.SetMinimumLevel(LogLevel.Information);
+});
+
+#### Test:
+- check api-testing.http GET all and check the terminal for “Fetching all tasks”.
 
