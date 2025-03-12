@@ -134,3 +134,21 @@ builder.Services.AddCors(options =>
 app.UseCors("AllowReactApp"); // Enable CORS
 
 
+## Bonus: Fix API Port (Optional)
+
+### Open TaskManagerApi/Properties/launchSettings.json (create it if missing)
+{
+  "profiles": {
+    "TaskManagerApi": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:7291;http://localhost:5291",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+
+
