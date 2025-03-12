@@ -16,6 +16,17 @@ builder.Services.AddLogging(logging =>
     logging.SetMinimumLevel(LogLevel.Information);
 });
 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5175")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -25,6 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseExceptionMiddleware(); // Add this
 app.UseHttpsRedirection();
+app.UseCors("AllowReactApp"); // Enable CORS
 app.UseAuthorization();
 app.MapControllers();
 

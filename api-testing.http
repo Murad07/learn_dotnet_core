@@ -7,7 +7,7 @@ POST http://localhost:5134/api/tasks
 Content-Type: application/json
 
 {
-    "title": "",
+    "title": "Home Work",
     "isCompleted": false
 }
 
@@ -34,7 +34,7 @@ GET http://localhost:5134/api/tasks/1
 Content-Type: application/json
 
 ### DELETE task (ID 1)
-DELETE http://localhost:5134/api/tasks/1
+DELETE http://localhost:5134/api/tasks/4
 Content-Type: application/json
 
 ### GET all tasks (should be empty again)

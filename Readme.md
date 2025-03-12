@@ -1,5 +1,6 @@
 ## Learning Dotnet Core - start 8th March 2025
 ### Learning source: https://grok.com/share/bGVnYWN5_3b2b72d0-bcc7-48c6-b772-f71aa1e54c45
+### Frontend source code: https://github.com/Murad07/task-manager-frontend
 
 ## Day 1 - 8th March 2025: .NET Core Basics & Setup
 ### Step 1: Install the .NET SDK in Ubuntu
@@ -115,4 +116,21 @@ builder.Services.AddLogging(logging =>
 
 #### Test:
 - check api-testing.http GET all and check the terminal for “Fetching all tasks”.
+
+## Day 4 - Connect with React Frontend
+### Step 1: Handle CORS Issues
+- Open TaskManagerApi/Program.cs and update it
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
+app.UseCors("AllowReactApp"); // Enable CORS
+
 
