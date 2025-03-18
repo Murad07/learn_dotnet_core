@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using TaskManagerApi.Data;
 using TaskManagerApi.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +30,25 @@ builder.Services.AddCors(options =>
     });
 });
 
+
+// Add JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "your-issuer",
+            ValidAudience = "your-audience",
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes("your-secret-key-32-chars-long!!!"))
+        };
+    });
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -37,6 +59,7 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionMiddleware(); // Add this
 app.UseHttpsRedirection();
 app.UseCors("AllowReactApp"); // Enable CORS
+app.UseAuthentication(); // Enable JWT Authentication
 app.UseAuthorization();
 app.MapControllers();
 

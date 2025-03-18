@@ -1,6 +1,16 @@
+### Login
+POST http://localhost:5134/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "pass"
+}
+
 ### GET all tasks (initially empty)
 GET http://localhost:5134/api/tasks
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsIm5iZiI6MTc0MjI3MzY1OCwiZXhwIjoxNzQyMjc3MjU4LCJpc3MiOiJ5b3VyLWlzc3VlciIsImF1ZCI6InlvdXItYXVkaWVuY2UifQ.itd2lkJA1xEHZi8xQS0he_x-CagVufWvW8Vc76KkrDc
 
 ### POST a new task
 POST http://localhost:5134/api/tasks

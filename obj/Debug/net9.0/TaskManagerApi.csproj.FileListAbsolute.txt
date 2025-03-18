@@ -144,3 +144,11 @@
 /home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/runtimes/win-x64/native/e_sqlite3.dll
 /home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/runtimes/win-x86/native/e_sqlite3.dll
 /home/murad/AppDev/learn/TaskManagerApi/obj/Debug/net9.0/TaskManagerApi.sourcelink.json
+/home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/home/murad/AppDev/learn/TaskManagerApi/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll

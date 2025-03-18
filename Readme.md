@@ -151,4 +151,75 @@ app.UseCors("AllowReactApp"); // Enable CORS
   }
 }
 
+## Day 6 - Integration & Authentication
+
+### Step 1: Add JWT to .NET Core API
+- dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 9.0.0
+- Update Program.cs:
+
+
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
+// Add JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "your-issuer",
+            ValidAudience = "your-audience",
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes("your-secret-key-32-chars-long!!!"))
+        };
+    });
+
+app.UseAuthentication();
+
+- Secure the controller, Update Controllers/TasksController.cs:
+
+
+using Microsoft.AspNetCore.Authorization;
+
+[Authorize] // Requires JWT
+[ApiController]
+[Route("api/[controller]")]
+public class TasksController : ControllerBase
+{
+  // ... existing code
+}
+
+
+### Step 2: Add Auth Endpoints
+- Create Controllers/AuthController.cs
+
+### Step 3: Test the Login Endpoint
+- dotnet run
+- Use your api-tests.http file to test
+
+### Login
+POST http://localhost:5134/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "pass"
+}
+
+- you will get the token in the response. use this token in the Authorization header of the next requests.
+
+### GET all tasks with token
+GET http://localhost:5134/api/tasks
+Content-Type: application/json
+Authorization: Bearer <paste-your-token-here>
+
+Step 4: Integrate Auth in React
+
+
 

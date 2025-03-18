@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManagerApi.Data;
 using TaskManagerApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
+[Authorize] // Requires JWT
 [ApiController]
 [Route("api/[controller]")]
+
+
 public class TasksController : ControllerBase
 {
     private readonly TaskContext _context;
