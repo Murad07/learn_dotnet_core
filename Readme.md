@@ -1,6 +1,4 @@
 ## Learning Dotnet Core - start 8th March 2025
-### Learning source: https://grok.com/share/bGVnYWN5_3b2b72d0-bcc7-48c6-b772-f71aa1e54c45
-### Frontend source code: https://github.com/Murad07/task-manager-frontend
 
 ## Day 1 - 8th March 2025: .NET Core Basics & Setup
 ### Step 1: Install the .NET SDK in Ubuntu
